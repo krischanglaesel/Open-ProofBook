@@ -3,7 +3,17 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
+  <div id="pics">
   {% for pic in pic_list %}
     <img src={{album_dir}}{{ pic }} />
   {% endfor %}
+  </div>
+  <div id="next_prev">
+  {% if prev_page %}
+    <a href="{{ prev_page }}">Prev</a>
+  {% endif %}
+  {% if next_page %}
+    <a href="{{ next_page }}">Next</a>
+  {% endif %}
+  </div>
 {% endblock %}
