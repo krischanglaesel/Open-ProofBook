@@ -16,5 +16,9 @@ Django:
 This project relies on Django 1.1.1 for now.  We will be upgrading as
 stable version are pushed out.
 
+Admin Site:
+
+Username is 'admin', password is 'password', email is admin@admin.com
+
 Copyright Josh Gachnang 2010
 

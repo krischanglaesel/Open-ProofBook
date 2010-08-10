@@ -11,6 +11,18 @@ logging.basicConfig(
 )
 PROJECT_PATH = '/home/josh/programming/open_proofbook/'
 
+STATIC_DOC_ROOT = PROJECT_PATH + 'static/'
+ALBUM_DIR = '/static/albums/'
+
+
+#S3 settings - not implemented yet.
+USE_AMAZON_S3 = 'True'
+DEFAULT_BUCKET = 'TwiceRefracted'
+AWS_ACCESS_KEY_ID = ''
+AWS_SECRET_ACCESS_KEY = ''
+
+PICS_PER_PAGE = '9'
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -116,15 +128,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'proofbook',
 )
-STATIC_DOC_ROOT = PROJECT_PATH + 'static/'
-ALBUM_DIR = '/static/albums/'
 
-
-#S3 settings
-USE_AMAZON_S3 = 'True'
-DEFAULT_BUCKET = 'TwiceRefracted'
-AWS_ACCESS_KEY_ID = ''
-AWS_SECRET_ACCESS_KEY = ''
-
-PICS_PER_PAGE = '9'
 

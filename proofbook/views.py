@@ -11,6 +11,8 @@ if settings.DEBUG:
 
 
 def home(request):
+  public_albums = Album.objects.filter(public=True)
+  
   return HttpResponse("Home")
 
 def create_album(request):
@@ -64,11 +66,25 @@ def album(request, album, curr_page=1):
   else:
     name = "Anonymous!"
     
+  # Find next and previous links, checking if there even is a next/prev page
+  if page <= avail_pages:
+    next_page = '/' + album + '/' + str(page + 1)
+  else:
+    next_page = None
+  if page > 1:
+    prev_page = '/' + album + '/' + str(page - 1)
+  else:
+    prev_page = None
+  
+  
   if settings.DEBUG:
     print 'Page: ' + str(page) + ' picmin: ' + str(pic_min) + ' picmax: ' + str(pic_max) + ' picpages: ' + str(pic_pages) + ' avail: ' + str(avail_pages) + ' pic_list len ' + str(len(pic_list))
 
   payload = {
     'title': a.title,
+    'page': page,
+    'next_page': next_page,
+    'prev_page': prev_page,
     'user': name,
     'public': a.public,
     'pic_list': pic_list[pic_min:pic_max],
