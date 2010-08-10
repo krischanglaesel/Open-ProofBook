@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 # Django settings for open_proofbook project.
 
+import logging
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+logging.basicConfig(
+  leve = logging.DEBUG,
+  format = '%(message)s',
+)
+PROJECT_PATH = '/home/josh/programming/open_proofbook/'
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
@@ -11,15 +18,24 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/josh/programming/open_proofbook/sqlite.db',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
+    #Django 1.3dev compatible DB stuff
+    #'default': {
+        #'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        #'NAME': '/home/josh/programming/open_proofbook/sqlite.db',                      # Or path to database file if using sqlite3.
+        #'USER': '',                      # Not used with sqlite3.
+        #'PASSWORD': '',                  # Not used with sqlite3.
+        #'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+        #'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+    #}
 }
+#Django 1.1.1 compatible DB stuff
+DATABASE_ENGINE = 'sqlite3'     # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME =  PROJECT_PATH + 'sqlite.db' #PROJECT_PATH + 'cobratechtools/gpxe/sqlite.db'             # Or path to database file if using sqlite3.
+DATABASE_USER = ''             # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
+DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -63,8 +79,11 @@ SECRET_KEY = 'hehk=of$8jjqv!(!%5u43(jhgfj0f($k=5#_e=0+%e)7_14yhg'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
+    'django.template.loaders.filesystem.load_template_source',
+    'django.template.loaders.app_directories.load_template_source',
+    #1.3dev
+    #'django.template.loaders.filesystem.Loader',
+    #'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
 
@@ -73,7 +92,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
+    #1.3dev
+    #'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'open_proofbook.urls'
@@ -82,7 +102,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/josh/programming/open_proofbook/proofbook/templates'
+    PROJECT_PATH + 'proofbook/templates'
 )
 
 INSTALLED_APPS = (
@@ -90,12 +110,13 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.messages',
+    #1.3dev
+    #'django.contrib.messages',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     'proofbook',
 )
-STATIC_DOC_ROOT = '/home/josh/programming/open_proofbook/static/'
+STATIC_DOC_ROOT = PROJECT_PATH + 'static/'
 ALBUM_DIR = '/static/albums/'
 
 
@@ -104,4 +125,6 @@ USE_AMAZON_S3 = 'True'
 DEFAULT_BUCKET = 'TwiceRefracted'
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
+
+PICS_PER_PAGE = '9'
 

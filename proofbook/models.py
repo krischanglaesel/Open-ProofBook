@@ -12,3 +12,6 @@ class Album(models.Model):
   public = models.BooleanField()
   # URL to album e.g. '/Test_Album'.
   path = models.CharField(max_length=70)
+  
+  def __unicode__(self):
+    return self.title
