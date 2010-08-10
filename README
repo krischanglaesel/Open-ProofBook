@@ -1,0 +1,20 @@
+Open ProofBook
+
+Released under the New BSD License
+
+OpenProofBook is an easy way for professional photographers to host their 
+pictures online for their clients to review, comment on, ask for touch ups, 
+and order, all designed specifically for online proofing. Unlike other 
+projects (Gallery2/3, Coppermine, etc) OpenProofBook is designed specifically 
+for proofing. It comes with certain protections against stealing photos from 
+the proofing site, only gives users access to their own photos, and makes the 
+whole process streamlined.
+
+
+Django:
+
+This project relies on Django 1.1.1 for now.  We will be upgrading as
+stable version are pushed out.
+
+Copyright Josh Gachnang 2010
+
