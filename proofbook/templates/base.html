@@ -8,9 +8,15 @@
     <meta name="Robots" content="index, follow" /> 
     <link rel="shortcut icon" href="/favicon.ico" /> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <link rel=stylesheet href="/static/css/base.css" type="text/css">
+    <link rel=stylesheet href="/static/css/nav.css" type="text/css">
+    {% block css %}{% endblock %}
   </head>
   <body>
-  {% include "nav.html" %}
-    {% block content %}{% endblock %}
+    <div id="logo">
+      <a href="/"><img height="80px" src="/static/img/twicerefracted_logo.gif"></a>
+    </div>
+    {% include "nav.html" %}
+      {% block content %}{% endblock %}
   </body>
 </html>

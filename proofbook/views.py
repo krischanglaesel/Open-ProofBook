@@ -6,9 +6,6 @@ from django.shortcuts import render_to_response
 from open_proofbook.proofbook.models import Album
 from open_proofbook.proofbook.forms import CreateAlbumForm
 import os
-if settings.DEBUG:
-  import logging
-
 
 def home(request):
   public_albums = Album.objects.filter(public=True)
@@ -40,7 +37,7 @@ def album(request, album, curr_page=1):
   
   #Find indices of pictures to show based on page.
   page = int(curr_page)
-  print page
+	  
   if page < 1:
     return HttpResponseNotFound()
     
@@ -79,7 +76,8 @@ def album(request, album, curr_page=1):
   
   if settings.DEBUG:
     print 'Page: ' + str(page) + ' picmin: ' + str(pic_min) + ' picmax: ' + str(pic_max) + ' picpages: ' + str(pic_pages) + ' avail: ' + str(avail_pages) + ' pic_list len ' + str(len(pic_list))
-
+    print pic_list[0]
+    
   payload = {
     'title': a.title,
     'page': page,

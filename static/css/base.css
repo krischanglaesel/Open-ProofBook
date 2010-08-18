@@ -1,0 +1,56 @@
+body {
+  background-color: red;
+}
+
+div.edge1{background:#DFDFDF url(category_img/w_left_top.gif) no-repeat; width:100%;}
+div.edge2{background:url(category_img/w_right_top.gif) no-repeat top right;}
+div.edge3{background:url(category_img/w_left_bottom.gif) no-repeat left bottom;}
+div.edge4{background:url(category_img/w_right_bottom.gif) no-repeat right bottom; padding:10px;}
+
+#logo {
+  width: 848px;
+  margin-right: auto;
+  margin-left: auto;
+}
+#pics {
+  width: 848px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+#pics-holder {
+  margin-right: auto;
+  margin-left: auto;
+  width: 210px;
+  height: 340px;
+  border-width: 1px;
+  border-color: white;
+  border-style: solid;
+  float: left;
+}
+#pics-holder:hover {
+  background-color: white;
+}
+#pics-holder p {
+  margin-top: 0px;
+  text-align: center;
+}
+#pics-holder img {
+  margin: 20px;
+  width: 180px;
+}
+#next-prev {
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+  width: 846px;
+}
+#next-prev a {
+  margin-left: 20px;
+  
+}
+  

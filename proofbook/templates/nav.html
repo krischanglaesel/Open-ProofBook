@@ -1,7 +1,12 @@
 <div id="nav">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/accounts/">Account</a></li>
-      <li><a href="/admin/">Admin Interface</a></li>
-    </ul>
+    <span class="inbar">
+      <ul>
+	<li class="navhome"><a href="/"><span>Home</span></a></li>
+      {% for category in category_list %}
+	<li><a="#{{ category }}"><span>{{ category.name }}</span></a></li>
+      {% empty %}
+	<li><a href="/admin/"><span>Admin</span></a></li>
+      {% endfor %}
+      </ul>
+    </span>
   </div>
