@@ -14,11 +14,12 @@
 	/* This is basic - uses default settings */
 	
 	$("a#single_image").fancybox({
+	  'titlePosittion'	:	'over',
 	  'transitionIn'	:	'elastic',
 	  'transitionOut'	:	'elastic',
 	  'speedIn'		:	300, 
 	  'speedOut'		:	200, 
-	  'overlayShow'	:	false
+	  'overlayShow'	:	false,
 	});
 	
       });
@@ -61,7 +62,7 @@
   <div id="pics">
   {% for pic in pic_list %}
     <div id="pics-holder">
-      <a id="single_image" rel="group1" href="{{ album_dir }}{{ pic }}"><img src={{ album_dir }}{{ pic }} /></a>
+      <a id="single_image" rel="group1" href="{{ album_dir }}{{ pic }}" title="{{ pic }}"><img src={{ album_dir }}{{ pic }} /></a>
       <p>{{ pic }}</p>
     </div>
   {% endfor %}
