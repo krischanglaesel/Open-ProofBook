@@ -2,7 +2,31 @@
 
 {% block title %}{{ title }}{% endblock %}
 
+{% block includes %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+    <script type="text/javascript" src="/static/js/fancybox/jquery.easing-1.3.pack.js"></script>
+    <script type="text/javascript" src="/static/js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+    <link rel="stylesheet" href="/static/js/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+	/* This is basic - uses default settings */
+	
+	$("a#single_image").fancybox({
+	  'transitionIn'	:	'elastic',
+	  'transitionOut'	:	'elastic',
+	  'speedIn'		:	300, 
+	  'speedOut'		:	200, 
+	  'overlayShow'	:	false
+	});
+	
+      });
+    </script>
+{% endblock %}
+
 {% block content %}
+  
   <div id="album-nav">
     <div id="slideshow-nav">
       <p>Slideshow</p>
@@ -37,7 +61,7 @@
   <div id="pics">
   {% for pic in pic_list %}
     <div id="pics-holder">
-      <img src={{ album_dir }}{{ pic }} />
+      <a id="single_image" rel="group1" href="{{ album_dir }}{{ pic }}"><img src={{ album_dir }}{{ pic }} /></a>
       <p>{{ pic }}</p>
     </div>
   {% endfor %}

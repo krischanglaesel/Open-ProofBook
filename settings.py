@@ -21,7 +21,7 @@ DEFAULT_BUCKET = 'TwiceRefracted'
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 
-PICS_PER_PAGE = '9'
+PICS_PER_PAGE = '8'
 
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),

@@ -51,8 +51,8 @@ def album(request, album, curr_page=1):
     pic_max = (page * 9) - 1
     pic_min = pic_max - 8
   elif page == avail_pages:
-    pic_min = (page - 1) * 9
-    remainder = (len(pic_list) - 1) % pic_pages
+    pic_min = (page - 1) * 9 - 1
+    remainder = (len(pic_list)) % pic_pages
     pic_max = pic_min + remainder
   else:
     return HttpResponseNotFound()
@@ -75,11 +75,11 @@ def album(request, album, curr_page=1):
     prev_page = '/' + album + '/' + str(page - 1)
   else:
     prev_page = None
-  
-  
+
   if settings.DEBUG:
     print 'Page: ' + str(page) + ' picmin: ' + str(pic_min) + ' picmax: ' + str(pic_max) + ' picpages: ' + str(pic_pages) + ' avail: ' + str(avail_pages) + ' pic_list len ' + str(len(pic_list))
-    print pic_list[0]
+    print 'Pic_list:'
+    print pic_list
     
   payload = {
     'title': a.title,
