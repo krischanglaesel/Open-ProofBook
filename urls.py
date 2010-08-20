@@ -28,5 +28,6 @@ urlpatterns += patterns('proofbook.views',
     (r'create_album/', 'create_album'),
     (r'(?P<album>[\w_]+)/(?P<curr_page>\d+)', 'album'),
     (r'(?P<album>[\w_]+)', 'album'),
-    (r'(?P<album>[\w_]+)/edit', 'album_edit'),    
+    (r'(?P<album>[\w_]+)/edit', 'album_edit'),
+    (r'(?P<album>[\w_]+)/all', 'album_all'),
 )

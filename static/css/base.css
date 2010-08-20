@@ -1,5 +1,5 @@
 body {
-  background-color: red;
+  background-color: black;
 }
 
 div.edge1{background:#DFDFDF url(category_img/w_left_top.gif) no-repeat; width:100%;}
@@ -24,33 +24,89 @@ div.edge4{background:url(category_img/w_right_bottom.gif) no-repeat right bottom
   width: 210px;
   height: 340px;
   border-width: 1px;
-  border-color: white;
+  border-color: #363435;
   border-style: solid;
   float: left;
 }
 #pics-holder:hover {
-  background-color: white;
+  background-color: #363435;
 }
 #pics-holder p {
   margin-top: 0px;
   text-align: center;
+  color: white;
 }
 #pics-holder img {
   margin: 20px;
   width: 180px;
 }
-#next-prev {
+#album-nav {
+  width: 846px;
   margin-right: auto;
   margin-left: auto;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-  border-top: 1px solid white;
-  width: 846px;
+  padding-top: 2px;
+  border: 1px solid #363435;
 }
-#next-prev a {
-  margin-left: 20px;
-  
+#album-nav a {
+  text-decoration: none;
 }
-  
+a.curr_page:link {
+  color: red;
+}
+a.curr_page:visited {
+  color: red;
+}
+a.curr_page:hover {
+  color: red;
+}
+a.curr_page:active {
+  color: red;
+}
+#album-nav a:link { 
+  color: white;
+}
+#album-nav a:visited { 
+  color: white;
+}
+#album-nav a:hover { 
+  color: #CCCCCC;
+  background-color: #333333;
+  text-decoration: none;
+}
+#album-nav a:active { 
+  color: white;
+}
+#slideshow-nav p {
+  text-align: center;
+  height: 10px;
+  margin: 0px;
+}
+#prev {
+  width: 100px;
+  padding-left: 20px;
+  display:table-cell;
+  margin-bottom: 0px;
+  height: 10px;
+}
+#prev p {
+  text-align: center;
+}
+#next {
+  width: 100px;
+  display:table-cell;
+  margin-bottom: 0px;
+  height: 10px;
+}
+#next p {
+  text-align: center;
+}
+#page-nav {
+  width: 646px;
+  display:table-cell;
+  margin-bottom: 0px;
+  height: 10px;
+}
+#page-nav p {
+  text-align: center;
+}
+

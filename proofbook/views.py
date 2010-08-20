@@ -45,18 +45,21 @@ def album(request, album, curr_page=1):
   if pic_pages == 0:
     raise ZeroDivisionError
   #Integer division should show many pages are possible, given the num of pics
-  avail_pages = (len(pic_list)) / pic_pages
+  avail_pages = ((len(pic_list)) / pic_pages) + 1
   
-  if page <= avail_pages:
+  if page < avail_pages:
     pic_max = (page * 9) - 1
     pic_min = pic_max - 8
-  elif page == avail_pages + 1:
+  elif page == avail_pages:
     pic_min = (page - 1) * 9
     remainder = (len(pic_list) - 1) % pic_pages
     pic_max = pic_min + remainder
   else:
     return HttpResponseNotFound()
     
+  #Fill list with numbers of pages
+  page_list = range(1, avail_pages + 1)
+  print len(page_list)
   #Prepare template payload
   if request.user.is_authenticated():
     name = request.user.first_name + ' ' + request.user.last_name
@@ -64,7 +67,7 @@ def album(request, album, curr_page=1):
     name = "Anonymous!"
     
   # Find next and previous links, checking if there even is a next/prev page
-  if page <= avail_pages:
+  if page < avail_pages:
     next_page = '/' + album + '/' + str(page + 1)
   else:
     next_page = None
@@ -86,6 +89,8 @@ def album(request, album, curr_page=1):
     'user': name,
     'public': a.public,
     'pic_list': pic_list[pic_min:pic_max],
+    'page_list': page_list,
+    'path': album,
     'album_dir': '/static/albums/' + album + '/',
     }
   return render_to_response('album.html', payload)
