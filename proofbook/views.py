@@ -3,14 +3,26 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.shortcuts import render_to_response
-from open_proofbook.proofbook.models import Album
+from open_proofbook.proofbook.models import Album, Category
 from open_proofbook.proofbook.forms import CreateAlbumForm
 import os
 
 def home(request):
-  public_albums = Album.objects.filter(public=True)
-  
-  return HttpResponse("Home")
+  category_album_list = []
+  categories = Category.objects.all()
+  for category in categories:
+    category_list = []
+    category_list.append(category.title)
+    
+    album_list=[]
+    for album in Album.objects.filter(category=category):
+      album_list.append('/static/albums/' + album.path + '/' + album.thumbnail)
+      print settings.STATIC_DOC_ROOT + 'albums/' + album.path + '/' + album.thumbnail
+    category_list.append(album_list)
+    category_album_list.append(category_list)
+  print category_album_list
+  return render_to_response('home.html', {'category_album_list': category_album_list,})
+
 
 def create_album(request):
   staff_only(request)
@@ -22,14 +34,21 @@ def create_album(request):
   else:
     form = CreateAlbumForm()
     return render_to_response('form.html',{'form': form})
-      
+
+
+# Ugly hack to make URLs work properly for numbered pages. Fix later.
+def album_front(request, album):
+    return HttpResponseRedirect(request.path + '1')
+ 
+ 
 def album(request, album, curr_page=1):
-  owner_only(request, album)
+  # Get directory path to the pictures
   try:
     a = Album.objects.get(path=album)
   except Album.DoesNotExist:
     return HttpResponseNotFound()
   album_path = settings.STATIC_DOC_ROOT + '/albums/' + album
+  
   
   #Get all the pictures in the album directory.  Need to add filters for 
   #directories and non-picture files.
@@ -38,7 +57,7 @@ def album(request, album, curr_page=1):
   #Find indices of pictures to show based on page.
   page = int(curr_page)
 	  
-  if page < 1:
+  if curr_page < 1:
     return HttpResponseNotFound()
     
   pic_pages = int(settings.PICS_PER_PAGE)
@@ -81,23 +100,30 @@ def album(request, album, curr_page=1):
     print 'Pic_list:'
     print pic_list
     
+  category_list = ""  
+    
   payload = {
-    'title': a.title,
+    'title': a.title, #need new way..
     'page': page,
     'next_page': next_page,
     'prev_page': prev_page,
     'user': name,
-    'public': a.public,
     'pic_list': pic_list[pic_min:pic_max],
     'page_list': page_list,
     'path': album,
     'album_dir': '/static/albums/' + album + '/',
+    'category_list': category_list,
     }
   return render_to_response('album.html', payload)
 
+
 def album_edit(request, album):
   staff_only(request)
-  
+
+
+def album_all(request):
+  pass
+
 #Aux
 
 def staff_only(request):
@@ -105,6 +131,8 @@ def staff_only(request):
     return HttpResponseRedirect('/accounts/login')
   if (request.user.is_staff == False & user.is_athenticated()):
     return HttpResponseForbidden()
+    
+    
 def owner_only(request, album):
   if (request.user.is_authenticated() == False):
     return HttpResponseRedirect('/accounts/login')
@@ -114,4 +142,9 @@ def owner_only(request, album):
     return HttpResponseNotFound()
   if (a.public == False &  request.user.is_staff == False): #a.owner != request.user <- Should work! Both should be a User object
     return HttpResponseForbidden()
-    
+
+
+# Searches models for the requested album, and returns the path to the pictures.
+def get_album(album):
+
+  return album_path

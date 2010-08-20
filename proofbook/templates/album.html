@@ -27,16 +27,15 @@
 {% endblock %}
 
 {% block content %}
-  
   <div id="album-nav">
     <div id="slideshow-nav">
-      <p>Slideshow</p>
+      <p><a href="{{ album_dir }}all">SlideShow</a></p>
     </div>
     
     <div id="prev">
       <p>
       {% if prev_page %}
-	<a href="{{ prev_page }}">Prev</a>
+	<a href="{{ prev_page }}">Previous</a>
       {% endif %}
       </p>
     </div>

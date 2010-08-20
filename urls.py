@@ -20,14 +20,14 @@ urlpatterns = patterns('',
     (r'^accounts/login/',  login),
     (r'^accounts/logout/', logout),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
-        {'document_root': settings.STATIC_DOC_ROOT}),
+    {'document_root': settings.STATIC_DOC_ROOT}),
 )
 
 urlpatterns += patterns('proofbook.views',
     (r'^$', 'home'),
     (r'create_album/', 'create_album'),
     (r'(?P<album>[\w_]+)/(?P<curr_page>\d+)', 'album'),
-    (r'(?P<album>[\w_]+)', 'album'),
+    (r'(?P<album>[\w_]+)/', 'album_front',),
     (r'(?P<album>[\w_]+)/edit', 'album_edit'),
     (r'(?P<album>[\w_]+)/all', 'album_all'),
 )

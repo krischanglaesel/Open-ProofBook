@@ -7,8 +7,8 @@ div.edge2{background:url(category_img/w_right_top.gif) no-repeat top right;}
 div.edge3{background:url(category_img/w_left_bottom.gif) no-repeat left bottom;}
 div.edge4{background:url(category_img/w_right_bottom.gif) no-repeat right bottom; padding:10px;}
 
-#logo {
-  width: 848px;
+#logo img {
+  display: block;
   margin-right: auto;
   margin-left: auto;
 }

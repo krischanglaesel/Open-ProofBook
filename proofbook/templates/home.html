@@ -1,29 +1,14 @@
 {% extends "base.html" %}
-
-{% block title %}{{ title }}{% endblock %}
-
+{% block includes %}
+  <link rel=stylesheet href="/static/css/home.css" type="text/css">
+{% endblock %}
 {% block content %}
-  <a href="/"><img href="/static/img/twicerefracted_logo.gif"></a>
-  <div id="pics">
-  {% for pic in pic_list %}
-    <img src={{album_dir}}{{ pic }} />
+  {% for category, album_list in category_album_list %}
+    <p>{{ category }}</p>
+    <hr />
+    {% for album in album_list %}
+      <img src="{{ album }}" />
+    {% endfor %}
   {% endfor %}
-  </div>
-  <div id="next_prev">
-  {% if prev_page %}
-    <a href="{{ prev_page }}">Prev</a>
-  {% endif %}
-  {% if next_page %}
-    <a href="{{ next_page }}">Next</a>
-  {% endif %}
-  </div>
 {% endblock %}  
-  <div class="edge1"> 
-  <div class="edge2"> 
-  <div class="edge3"> 
-  <div class="edge4"> 
-  Welcome on my site
-  </div> 
-  </div> 
-  </div> 
-  </div> 
+  
