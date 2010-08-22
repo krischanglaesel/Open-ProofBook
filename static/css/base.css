@@ -1,12 +1,6 @@
 body {
   background-color: black;
 }
-
-div.edge1{background:#DFDFDF url(category_img/w_left_top.gif) no-repeat; width:100%;}
-div.edge2{background:url(category_img/w_right_top.gif) no-repeat top right;}
-div.edge3{background:url(category_img/w_left_bottom.gif) no-repeat left bottom;}
-div.edge4{background:url(category_img/w_right_bottom.gif) no-repeat right bottom; padding:10px;}
-
 #logo img {
   display: block;
   margin-right: auto;
@@ -23,9 +17,7 @@ div.edge4{background:url(category_img/w_right_bottom.gif) no-repeat right bottom
   margin-left: auto;
   width: 210px;
   height: 340px;
-  border-width: 1px;
-  border-color: #363435;
-  border-style: solid;
+  border: 1px solid #363435;
   float: left;
 }
 #pics-holder:hover {
@@ -50,16 +42,16 @@ div.edge4{background:url(category_img/w_right_bottom.gif) no-repeat right bottom
 #album-nav a {
   text-decoration: none;
 }
-a.curr_page:link {
+#curr_page a:link {
   color: red;
 }
-a.curr_page:visited {
+#curr_page a:visited {
   color: red;
 }
-a.curr_page:hover {
+#curr_page a:hover {
   color: red;
 }
-a.curr_page:active {
+#curr_page a:active {
   color: red;
 }
 #album-nav a:link { 
@@ -71,10 +63,13 @@ a.curr_page:active {
 #album-nav a:hover { 
   color: #CCCCCC;
   background-color: #333333;
-  text-decoration: none;
+  text-decoration: underline;
 }
 #album-nav a:active { 
   color: white;
+}
+#page-nav span {
+  background-color: #333333;
 }
 #slideshow-nav p {
   text-align: center;

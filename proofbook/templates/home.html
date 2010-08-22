@@ -3,12 +3,20 @@
   <link rel=stylesheet href="/static/css/home.css" type="text/css">
 {% endblock %}
 {% block content %}
+  <div id="content">
   {% for category, album_list in category_album_list %}
-    <p>{{ category }}</p>
-    <hr />
-    {% for album in album_list %}
-      <img src="{{ album }}" />
-    {% endfor %}
+    <div id="category">
+      <div id="category-title">
+	<p>{{ category }}</p>
+      </div>
+      {% for album in album_list %}
+	<div id="album">
+	  <p>{{ album.title }}</p>
+	  <img src="/static/albums/{{ album.path }}/{{ album.thumbnail }}" />
+	</div>
+      {% endfor %}
+    </div>
   {% endfor %}
+  </div>
 {% endblock %}  
   

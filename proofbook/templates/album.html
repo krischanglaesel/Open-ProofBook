@@ -43,7 +43,7 @@
       <p>
     {% for pages in page_list %}
       {% ifequal page pages %}
-      <a class="curr_page" href="{{ pages }}">{{ pages }}</a>
+      <span><a href="{{ pages }}">{{ pages }}</a></span>
       {% else %}
       <a href="{{ pages }}">{{ pages }}</a>
       {% endifequal %}

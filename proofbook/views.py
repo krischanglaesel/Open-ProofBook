@@ -16,8 +16,9 @@ def home(request):
     
     album_list=[]
     for album in Album.objects.filter(category=category):
-      album_list.append('/static/albums/' + album.path + '/' + album.thumbnail)
-      print settings.STATIC_DOC_ROOT + 'albums/' + album.path + '/' + album.thumbnail
+      #album_list.append('/static/albums/' + album.path + '/' + album.thumbnail)
+      album_list.append(album)
+      print album
     category_list.append(album_list)
     category_album_list.append(category_list)
   print category_album_list
