@@ -42,18 +42,6 @@ body {
 #album-nav a {
   text-decoration: none;
 }
-#curr_page a:link {
-  color: red;
-}
-#curr_page a:visited {
-  color: red;
-}
-#curr_page a:hover {
-  color: red;
-}
-#curr_page a:active {
-  color: red;
-}
 #album-nav a:link { 
   color: white;
 }

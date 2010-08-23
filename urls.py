@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     (r'^accounts/logout/', logout),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
     {'document_root': settings.STATIC_DOC_ROOT}),
+    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/favicon.ico'}),
 )
 
 urlpatterns += patterns('proofbook.views',

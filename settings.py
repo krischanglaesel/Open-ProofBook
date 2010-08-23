@@ -123,8 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     #1.3dev
-    #'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
+    ##'django.contrib.messages',
     'django.contrib.admin',
     'proofbook',
 )

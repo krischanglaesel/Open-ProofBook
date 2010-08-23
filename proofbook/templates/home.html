@@ -11,8 +11,8 @@
       </div>
       {% for album in album_list %}
 	<div id="album">
-	  <p>{{ album.title }}</p>
-	  <img src="/static/albums/{{ album.path }}/{{ album.thumbnail }}" />
+	  <a href="/{{ album.path }}/"><p>{{ album.title }}</p></a>
+	  <a href="/{{ album.path }}/"><img src="/static/albums/{{ album.path }}/{{ album.thumbnail }}" /><a>
 	</div>
       {% endfor %}
     </div>

@@ -3,8 +3,8 @@
 from django.conf import settings
 from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.shortcuts import render_to_response
-from open_proofbook.proofbook.models import Album, Category
-from open_proofbook.proofbook.forms import CreateAlbumForm
+from models import Album, Category
+from forms import CreateAlbumForm
 import os
 
 def home(request):
