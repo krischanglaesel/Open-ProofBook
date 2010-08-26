@@ -1,6 +1,9 @@
 body {
   background-color: black;
 }
+img {
+  border-style: none;
+}
 #logo img {
   display: block;
   margin-right: auto;
