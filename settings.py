@@ -18,7 +18,7 @@ AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 
 IMAGE_FORMATS = ('jpg', 'jpeg', 'png', 'gif', 'bmp')
-THUMBNAIL_SIZE = 180, 180 #Max thumbnail size for either dimension.  Will maintain aspect ratio.
+THUMBNAIL_SIZE = 250, 250 #Max thumbnail size for either dimension.  Will maintain aspect ratio.
 
 PICS_PER_PAGE = '8'
 

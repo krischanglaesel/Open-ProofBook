@@ -166,7 +166,7 @@ def generate_thumbnails(album):
 	im.thumbnail(settings.THUMBNAIL_SIZE, Image.ANTIALIAS)
 	filename = os.path.split(file)
 	print filename
-	im.save(settings.PROJECT_PATH + "/static/albums/" + album.path + "/thumbnails/" + filename[1] + '.jpg', "JPEG") in settings.IMAGE_FORMATS
+	im.save(settings.PROJECT_PATH + "/static/albums/" + album.path + "/thumbnails/" + filename[1] + '.jpg', "JPEG", quality=100) in settings.IMAGE_FORMATS
   return True
   
 def generate_all(request):
@@ -189,7 +189,7 @@ def has_thumbnails(album):
   if count == thumb_count:
     print 'true'
     return True
-  if count < thumb_count:
+  if count > thumb_count:
     print 'false'
     return False
   else:
