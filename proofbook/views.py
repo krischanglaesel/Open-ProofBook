@@ -6,6 +6,8 @@ from django.shortcuts import render_to_response
 from models import Album, Category
 from forms import CreateAlbumForm
 import os
+import glob
+from PIL import Image
 
 def home(request):
   category_album_list = []
@@ -48,12 +50,12 @@ def album(request, album, curr_page=1):
     a = Album.objects.get(path=album)
   except Album.DoesNotExist:
     return HttpResponseNotFound()
-  album_path = settings.STATIC_DOC_ROOT + '/albums/' + album
+  album_path = settings.STATIC_DOC_ROOT + 'albums/' + album
   
   
   #Get all the pictures in the album directory.  Need to add filters for 
   #directories and non-picture files.
-  pic_list = sorted(os.listdir(album_path))
+  pic_list = sorted(os.listdir(album_path + '/thumbnails/'))
   
   #Find indices of pictures to show based on page.
   page = int(curr_page)
@@ -132,8 +134,7 @@ def staff_only(request):
     return HttpResponseRedirect('/accounts/login')
   if (request.user.is_staff == False & user.is_athenticated()):
     return HttpResponseForbidden()
-    
-    
+        
 def owner_only(request, album):
   if (request.user.is_authenticated() == False):
     return HttpResponseRedirect('/accounts/login')
@@ -145,7 +146,54 @@ def owner_only(request, album):
     return HttpResponseForbidden()
 
 
-# Searches models for the requested album, and returns the path to the pictures.
+# Searches models for the requested album, and returns the path to the 
+# pictures.
 def get_album(album):
-
   return album_path
+
+# Pass album object, and generate thumbnails for all vaild images. #Returns 
+# true is thumbnails exist or are generated.
+def generate_thumbnails(album):
+  # Get all files in directory
+  if has_thumbnails(album) == False:
+    for infile in glob.glob(settings.PROJECT_PATH + "/static/albums/" + album.path + "/*"):
+      #If split filename and extension
+      file, ext = os.path.splitext(infile)
+      #Subtract period from extension
+      if ext[1:] in settings.IMAGE_FORMATS:
+	im = Image.open(infile)
+	#Antialias has the best peformance and quality for thumbnails
+	im.thumbnail(settings.THUMBNAIL_SIZE, Image.ANTIALIAS)
+	filename = os.path.split(file)
+	print filename
+	im.save(settings.PROJECT_PATH + "/static/albums/" + album.path + "/thumbnails/" + filename[1] + '.jpg', "JPEG") in settings.IMAGE_FORMATS
+  return True
+  
+def generate_all(request):
+  album_list = Album.objects.all()
+  for album in album_list:
+    generate_thumbnails(album)
+  return HttpResponse("Generated")
+
+def has_thumbnails(album):
+  if os.path.exists(settings.PROJECT_PATH + "/static/albums/" + album.path + "/thumbnails") == False:
+      os.mkdir(settings.PROJECT_PATH + "/static/albums/" + album.path + "/thumbnails", 0744)
+      'print shit'
+      return False
+  count = 0
+  for infile in glob.glob(settings.PROJECT_PATH + "/static/albums/" + album.path + "/*"):
+    file, ext = os.path.splitext(infile)
+    if ext[1:] in settings.IMAGE_FORMATS:
+      count = count + 1
+    thumb_count = len(os.listdir(settings.PROJECT_PATH + "/static/albums/" + album.path + "/thumbnails/"))
+  if count == thumb_count:
+    print 'true'
+    return True
+  if count < thumb_count:
+    print 'false'
+    return False
+  else:
+    print 'err'
+    raise IOError("Thumbnails directory modified externally")
+  
+  

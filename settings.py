@@ -2,16 +2,12 @@
 # Django settings for open_proofbook project.
 
 import logging
+import os
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
-logging.basicConfig(
-  leve = logging.DEBUG,
-  format = '%(message)s',
-)
-PROJECT_PATH = '/home/josh/programming/open_proofbook/'
+DEBUG = TEMPLATE_DEBUG = True
 
-STATIC_DOC_ROOT = PROJECT_PATH + 'static/'
+PROJECT_PATH = os.getcwd()
+STATIC_DOC_ROOT = PROJECT_PATH + '/static/'
 ALBUM_DIR = '/static/albums/'
 
 
@@ -20,6 +16,9 @@ USE_AMAZON_S3 = 'True'
 DEFAULT_BUCKET = 'TwiceRefracted'
 AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
+
+IMAGE_FORMATS = ('jpg', 'jpeg', 'png', 'gif', 'bmp')
+THUMBNAIL_SIZE = 180, 180 #Max thumbnail size for either dimension.  Will maintain aspect ratio.
 
 PICS_PER_PAGE = '8'
 
