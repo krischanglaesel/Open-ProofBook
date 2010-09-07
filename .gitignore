@@ -2,3 +2,4 @@
 *~
 .svn
 /static/albums/*
+settings-production.py
