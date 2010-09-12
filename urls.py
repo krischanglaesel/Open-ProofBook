@@ -25,6 +25,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('proofbook.views',
+    (r'thumbs/(?P<album>[\w_]+)/', 'generate_thumbs'),
     (r'^$', 'home'),
     (r'create_album/', 'create_album'),
     (r'generate_all/', 'generate_all'),
