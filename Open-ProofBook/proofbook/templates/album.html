@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block includes %}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/fancybox/jquery.fancybox-1.3.1.pack.js"></script>
+    <script type="text/javascript" src="/static/js/fancybox/jquery.easing-1.3.pack.js"></script>
+    <script type="text/javascript" src="/static/js/fancybox/jquery.mousewheel-3.0.2.pack.js"></script>
+    <link rel="stylesheet" href="/static/js/fancybox/jquery.fancybox-1.3.1.css" type="text/css" media="screen" />
+    <script type="text/javascript">
+      $(document).ready(function() {
+
+	/* This is basic - uses default settings */
+	
+	$("a#single_image").fancybox({
+	  'titlePosittion'	:	'over',
+	  'transitionIn'	:	'elastic',
+	  'transitionOut'	:	'elastic',
+	  'speedIn'		:	300, 
+	  'speedOut'		:	200, 
+	  'overlayShow'	:	false,
+	});
+	
+      });
+    </script>
+    <script type="text/javascript">
+      $(document).bind("contextmenu", function(e) {
+      return false;
+    });
+    </script>
+{% endblock %}
+
+{% block content %}
+  <div id="album-nav">
+    <div id="slideshow-nav">
+      <p><a href="{{ album_dir }}all">SlideShow</a></p>
+    </div>
+    
+    <div id="prev">
+      <p>
+      {% if prev_page %}
+	<a href="{{ prev_page }}">Previous</a>
+      {% endif %}
+      </p>
+    </div>
+    <div id="page-nav">
+      <p>
+    {% for pages in page_list %}
+      {% ifequal page pages %}
+      <span><a href="{{ pages }}">{{ pages }}</a></span>
+      {% else %}
+      <a href="{{ pages }}">{{ pages }}</a>
+      {% endifequal %}
+    {% endfor %}
+      </p>
+    </div>
+    <div id="next">
+      <p>
+    {% if next_page %}
+      <a href="{{ next_page }}">Next</a>
+    {% endif %}
+      </p>
+    </div>
+  </div>
+  <div id="pics">
+  {% for pic in pic_list %}
+    <div id="pics-holder">
+      <a id="single_image" rel="group1" href="{{ album_dir }}{{ pic }}" title="{{ pic }}"><img src={{ album_dir }}thumbnails/{{ pic }} /></a>
+      <p>{{ pic }}</p>
+    </div>
+  {% endfor %}
+  </div>
+{% endblock %}

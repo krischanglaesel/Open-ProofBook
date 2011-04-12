@@ -1,0 +1,64 @@
+#nav {
+  width: 848px;
+  margin-right: auto;
+  margin-left: auto;
+  height:36px;
+  background:url(nav_img/navbar-bg.png) left top repeat-x; 
+  margin-bottom: 10px;
+}
+#nav .inbar {
+  display:block;
+  height:36px;
+  background:url(nav_img/right-round.png) right top no-repeat; 
+
+}
+#nav ul, #nav ul li {
+  border:0px;
+  margin:0px;
+  padding:0px;
+  list-style:none;
+  height:36px;
+  line-height:36px; 
+} 
+#nav ul {
+  background:url(nav_img/left-round.png) left top no-repeat; 
+} 
+#nav ul li {
+  float:left;
+  display:block;
+  line-height:36px; 
+} 
+#nav ul li a {
+  color:#403e32;
+  text-decoration:none;
+  font-weight:bold;
+  display:block; 
+} 
+#nav ul li a span {
+  padding:0 20px 0 0;
+  height:36px;
+  line-height:36px;
+  display:block;
+  margin-left:20px; 
+}
+#nav .navhome a, #nav .navhome a:hover {
+  background:url(nav_img/a-bg.png) left top no-repeat;
+  height:36px;
+  line-height:36px; 
+} 
+#nav .navhome a span, #nav .navhome a:hover span {
+  color:#FFFFFF;
+  background:url(nav_img/span-bg.png) right top no-repeat;
+  height:36px;
+  line-height:36px; 
+}
+#nav ul li a:hover {
+  background:url(nav_img/ahover-bg.png) left top no-repeat;
+  height:36px;
+  line-height:36px; 
+} 
+#nav ul li a:hover span {
+  background:url(nav_img/spanhover-bg.png) right top no-repeat;
+  height:36px;
+  line-height:36px; 
+}
