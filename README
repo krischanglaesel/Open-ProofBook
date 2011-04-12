@@ -13,7 +13,7 @@ whole process streamlined.
 
 Django:
 
-This project relies on Django 1.1.1 for now.  We will be upgrading as
+This project relies on Django 1.2.3 for now.  We will be upgrading as
 stable version are pushed out.
 
 Admin Site:
